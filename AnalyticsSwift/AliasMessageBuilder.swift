@@ -22,33 +22,33 @@
 
 import Foundation
 
-public class AliasMessageBuilder: MessageBuilder {
-  private var dictionary: Dictionary<String, AnyObject>
-  
-  public init(previousId: String) {
-    dictionary = Dictionary()
+open class AliasMessageBuilder: MessageBuilder {
+    fileprivate var dictionary: [String: AnyObject]
     
-    dictionary["type"] = "alias"
-    dictionary["previousId"] = previousId
-  }
-  
-  // Common
-  public func userId(userId: String) -> AliasMessageBuilder {
-    dictionary["userId"] = userId
-    return self
-  }
-  
-  public func anonymousId(anonymousId: String) -> AliasMessageBuilder {
-    dictionary["anonymousId"] = anonymousId
-    return self
-  }
-  
-  public func context(context: Dictionary<String, AnyObject>) -> AliasMessageBuilder {
-    dictionary["context"] = context
-    return self
-  }
-  
-  public func build() -> Dictionary<String, AnyObject> {
-    return dictionary
-  }
+    public init(previousId: String) {
+        dictionary = Dictionary()
+        
+        dictionary["type"] = "alias" as AnyObject
+        dictionary["previousId"] = previousId as AnyObject
+    }
+    
+    // Common
+    open func userId(_ userId: String) -> AliasMessageBuilder {
+        dictionary["userId"] = userId as AnyObject
+        return self
+    }
+    
+    open func anonymousId(_ anonymousId: String) -> AliasMessageBuilder {
+        dictionary["anonymousId"] = anonymousId as AnyObject
+        return self
+    }
+    
+    open func context(_ context: [String: AnyObject]) -> AliasMessageBuilder {
+        dictionary["context"] = context as AnyObject
+        return self
+    }
+    
+    open func build() -> [String: AnyObject] {
+        return dictionary
+    }
 }

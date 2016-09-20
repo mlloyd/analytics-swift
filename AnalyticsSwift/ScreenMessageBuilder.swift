@@ -22,38 +22,38 @@
 
 import Foundation
 
-public class ScreenMessageBuilder: MessageBuilder {
-  private var dictionary: Dictionary<String, AnyObject>
-  
-  public init(name: String) {
-    dictionary = Dictionary()
+open class ScreenMessageBuilder: MessageBuilder {
+    fileprivate var dictionary: [String: AnyObject]
     
-    dictionary["type"] = "screen"
-    dictionary["name"] = name
-  }
-  
-  public func properties(properties: Dictionary<String, AnyObject>) -> ScreenMessageBuilder {
-    dictionary["properties"] = properties
-    return self
-  }
-  
-  // Common
-  public func userId(userId: String) -> ScreenMessageBuilder {
-    dictionary["userId"] = userId
-    return self
-  }
-  
-  public func anonymousId(anonymousId: String) -> ScreenMessageBuilder {
-    dictionary["anonymousId"] = anonymousId
-    return self
-  }
-  
-  public func context(context: Dictionary<String, AnyObject>) -> ScreenMessageBuilder {
-    dictionary["context"] = context
-    return self
-  }
-  
-  public func build() -> Dictionary<String, AnyObject> {
-    return dictionary
-  }
+    public init(name: String) {
+        dictionary = Dictionary()
+        
+        dictionary["type"] = "screen" as AnyObject
+        dictionary["name"] = name as AnyObject
+    }
+    
+    open func properties(_ properties: [String: AnyObject]) -> ScreenMessageBuilder {
+        dictionary["properties"] = properties as AnyObject
+        return self
+    }
+    
+    // Common
+    open func userId(_ userId: String) -> ScreenMessageBuilder {
+        dictionary["userId"] = userId as AnyObject
+        return self
+    }
+    
+    open func anonymousId(_ anonymousId: String) -> ScreenMessageBuilder {
+        dictionary["anonymousId"] = anonymousId as AnyObject
+        return self
+    }
+    
+    open func context(_ context: [String: AnyObject]) -> ScreenMessageBuilder {
+        dictionary["context"] = context as AnyObject
+        return self
+    }
+    
+    open func build() -> [String: AnyObject] {
+        return dictionary
+    }
 }
